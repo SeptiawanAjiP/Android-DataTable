@@ -31,7 +31,7 @@ dependencies {
 replace Tag with the latest version.
 
 ## Usage
-To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: 'columns' and 'listData'. To begin inputting data, invoke the 'initData' function and input 'columns' and 'listData'.
+To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: columns (array of column) and listData (array of data). The number of array columns must match the count of variables in your entities.
 ```bash
 class MainActivity: DataTableActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,4 +57,27 @@ class MainActivity: DataTableActivity() {
         initData(columns, listData)
     }
 }
+```
+### Column Data Class
+This is an column entity (data class), and this form cannot be altered as this data class is within the library. 'data' is refers to name
+```bash
+data class Column(
+
+	@field:SerializedName("data")
+	val data: String? = null,
+
+	@field:SerializedName("title")
+	val title: String? = null
+)
+```
+The data refers to the name of variables in your entities, and that title will become the column name
+### Dynamic Data Class
+While this is an example entity (data class), it can be modified according to the entities you possess.
+```bash
+data class User(
+    val name: String,
+    val age: Int,
+    val address: String,
+    val email: String
+)
 ```
