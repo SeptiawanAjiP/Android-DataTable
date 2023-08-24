@@ -25,7 +25,6 @@ open class DataTableActivity: AppCompatActivity() {
     internal var jsi: JavascriptInterface? = null
     private lateinit var mListColumns: List<Column>
     private lateinit var mListData: List<Any>
-    private lateinit var mData: Any
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -34,12 +33,10 @@ open class DataTableActivity: AppCompatActivity() {
 
     fun initData(
         listColumns: List<Column>,
-        listData: List<Any>,
-        data: Any
+        listData: List<Any>
     ) {
         this.mListColumns = listColumns
         this.mListData = listData
-        this.mData = data
         initView()
     }
 
