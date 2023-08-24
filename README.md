@@ -81,3 +81,7 @@ data class User(
     val email: String
 )
 ```
+## ToDo
+- [x] Offline mode, right now still access online css and js
+- [ ] Show button on Table and get response when button is clicked
+- [ ] Export as XML widget
