@@ -31,7 +31,7 @@ dependencies {
 replace Tag with the latest version.
 
 ## Usage
-To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: columns (array of column) and listData (array of data). The number of array columns must match the count of variables in your entities.
+To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: columns (array of column) and listData (array of data). **The number of array columns must match the count of variables in your entities.**
 ```bash
 class MainActivity: DataTableActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +55,22 @@ class MainActivity: DataTableActivity() {
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
         initData(columns, listData)
+        
+        /* 
+        This is an example entity that I used in example above.
+
+        data class User(
+            val name: String,
+            val age: Int,
+            val address: String,
+            val email: String
+        )
+        */
     }
 }
 ```
 ### Column Data Class
-This is an column entity (data class), and this form cannot be altered as this data class is within the library. 'data' is refers to name
+This is an column entity (data class), and this form cannot be altered as this data class is within the library.
 ```bash
 data class Column(
 
@@ -70,17 +81,9 @@ data class Column(
 	val title: String? = null
 )
 ```
-The data refers to the name of variables in your entities, and that title will become the column name
-### Dynamic Data Class
-While this is an example entity (data class), it can be modified according to the entities you possess.
-```bash
-data class User(
-    val name: String,
-    val age: Int,
-    val address: String,
-    val email: String
-)
-```
+The data refers to the name of variables in your entities, and that title will become the name/title of column.
+####  REMEMBER : The number of array columns must match the count of variables in your entities.
+
 ## ToDo
 - [x] Offline mode, access css and js from assets folder
 - [ ] Show button on Table and get response when button is clicked
