@@ -82,6 +82,6 @@ data class User(
 )
 ```
 ## ToDo
-- [ ] Offline mode, right now still access online css and js
+- [x] Offline mode, access css and js from assets folder
 - [ ] Show button on Table and get response when button is clicked
 - [ ] Export as XML widget
