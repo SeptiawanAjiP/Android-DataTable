@@ -26,6 +26,9 @@ then, add the dependecy in your build.gradle file (Module)
 ```bash
 dependencies {
     implementation 'com.github.SeptiawanAjiP:Android-DataTable:Tag'
+    
+    // convert json string to entity
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 ```
 replace Tag with the latest version.
@@ -54,18 +57,16 @@ class MainActivity: DataTableActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        initData(columns, listData)
-        
-        /* 
-        This is an example entity that I used in example above.
+        initData(columns, listData, true)
+    }
 
-        data class User(
-            val name: String,
-            val age: Int,
-            val address: String,
-            val email: String
-        )
-        */
+    override fun onRowClicked(dataStr: String) {
+        super.onRowClicked(dataStr)
+        // convert dataStr to your entity
+        val userClicked = Gson().fromJson(dataStr, User::class.java)
+
+        // now, you can get an entity that user clicked, replace this with your function.
+        Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
     }
 }
 ```

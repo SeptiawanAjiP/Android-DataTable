@@ -49,18 +49,33 @@
 <script src="js/responsive.bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
+        const column = JSON.parse(Android.getColumn());
+        const data = JSON.parse(Android.getData());
+        if (Android.isActionButtonShow()) {
+            const actionButton = {
+                 "data": null,
+                 "title": 'Action',
+                 "wrap": true,
+                 "render": function (item) {
+                    const dataAttr = JSON.stringify(item).replace(/'/g, "\\'");
+                    return `<div class="btn-group"> <button type="button" data-json='${dataAttr}' onclick="action(this)" value="0" class="btn btn-success">Action</button></div>`;
 
-        var column = JSON.parse(Android.getColumn());
-        var data = JSON.parse(Android.getData());
-        console.log(column)
-        console.log(data)
-
+                }
+            }
+            column.push(actionButton)
+        }
         $("#example").DataTable({
             responsive: true,
             columns: column,
             data: data
-          })
+        })
      });
+
+      function action(button) {
+        const dataAttr = button.getAttribute('data-json');
+        Android.action(dataAttr)
+     }
+
     </script>
 </body>
 </html>

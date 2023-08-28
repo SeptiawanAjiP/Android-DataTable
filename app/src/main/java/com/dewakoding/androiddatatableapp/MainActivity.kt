@@ -1,9 +1,11 @@
 package com.dewakoding.androiddatatableapp
 
 import android.os.Bundle
+import android.widget.Toast
 import com.dewakoding.androiddatatable.DataTableActivity
 import com.dewakoding.androiddatatable.data.Column
 import com.dewakoding.androiddatatableapp.data.User
+import com.google.gson.Gson
 
 class MainActivity: DataTableActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,16 @@ class MainActivity: DataTableActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        initData(columns, listData)
+        // you can enable/disable action column with change last parameter true/false
+        initData(columns, listData, true)
+    }
+
+    override fun onRowClicked(dataStr: String) {
+        super.onRowClicked(dataStr)
+        // convert dataStr to your entity
+        val userClicked = Gson().fromJson(dataStr, User::class.java)
+
+        // now, you can get an entity that user clicked, replace this with your function.
+        Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
     }
 }
