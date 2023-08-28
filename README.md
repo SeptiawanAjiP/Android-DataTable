@@ -87,5 +87,5 @@ The data refers to the name of variables in your entities, and that title will b
 
 ## ToDo
 - [x] Offline mode, access css and js from assets folder
-- [ ] Show button on Table and get response when button is clicked
+- [x] Show button on Table and get response when button is clicked
 - [ ] Export as XML widget
