@@ -1,15 +1,20 @@
 package com.dewakoding.androiddatatableapp
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import com.dewakoding.androiddatatable.DataTableActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.dewakoding.androiddatatable.data.Column
+import com.dewakoding.androiddatatable.listener.OnWebViewComponentClickListener
 import com.dewakoding.androiddatatableapp.data.User
+import com.dewakoding.androiddatatableapp.databinding.ActivityMainBinding
 import com.google.gson.Gson
 
-class MainActivity: DataTableActivity() {
+class MainActivity: AppCompatActivity() {
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         val columns = ArrayList<Column>()
         columns.add(Column("name", "Name"))
         columns.add(Column("age", "Age"))
@@ -28,16 +33,18 @@ class MainActivity: DataTableActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        // you can enable/disable action column with change last parameter true/false
-        initData(columns, listData, true)
-    }
+        binding.dtvTable.setTable(columns, listData, true)
 
-    override fun onRowClicked(dataStr: String) {
-        super.onRowClicked(dataStr)
-        // convert dataStr to your entity
-        val userClicked = Gson().fromJson(dataStr, User::class.java)
+        binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
+            override fun onRowClicked(dataStr: String) {
+                // convert dataStr to your entity
+                val userClicked = Gson().fromJson(dataStr, User::class.java)
 
-        // now, you can get an entity that user clicked, replace this with your function.
-        Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
+                // now, you can get an entity that user clicked, replace this with your function.
+                Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
     }
 }

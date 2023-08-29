@@ -35,10 +35,56 @@ replace Tag with the latest version.
 
 ## Usage
 To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: columns (array of column) and listData (array of data). **The number of array columns must match the count of variables in your entities.**
+
+### XML Layout
 ```bash
-class MainActivity: DataTableActivity() {
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android DataTable"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+    <com.dewakoding.androiddatatable.DataTableView
+        android:id="@+id/dtv_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+### Activity
+```bash
+package com.dewakoding.androiddatatableapp
+
+import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.dewakoding.androiddatatable.data.Column
+import com.dewakoding.androiddatatable.listener.OnWebViewComponentClickListener
+import com.dewakoding.androiddatatableapp.data.User
+import com.dewakoding.androiddatatableapp.databinding.ActivityMainBinding
+
+class MainActivity: AppCompatActivity() {
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         val columns = ArrayList<Column>()
         columns.add(Column("name", "Name"))
         columns.add(Column("age", "Age"))
@@ -57,16 +103,20 @@ class MainActivity: DataTableActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        initData(columns, listData, true)
-    }
+        binding.dtvTable.setTable(columns, listData, true)
 
-    override fun onRowClicked(dataStr: String) {
-        super.onRowClicked(dataStr)
-        // convert dataStr to your entity
-        val userClicked = Gson().fromJson(dataStr, User::class.java)
+        binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
+            override fun onRowClicked(dataStr: String) {
+                 // convert dataStr to your entity
+                val userClicked = Gson().fromJson(dataStr, User::class.java)
 
-        // now, you can get an entity that user clicked, replace this with your function.
-        Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
+                // now, you can get an entity that user clicked, replace this with your function.
+                Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
+
     }
 }
 ```
@@ -88,4 +138,4 @@ The data refers to the name of variables in your entities, and that title will b
 ## ToDo
 - [x] Offline mode, access css and js from assets folder
 - [x] Show button on Table and get response when button is clicked
-- [ ] Export as XML widget
+- [x] Export as XML widget
