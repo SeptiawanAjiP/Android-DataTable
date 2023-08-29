@@ -34,7 +34,7 @@ dependencies {
 replace Tag with the latest version.
 
 ## Usage
-To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are two vital parameters: columns (array of column) and listData (array of data). **The number of array columns must match the count of variables in your entities.**
+To use this library, just extend the DataTAblectivity class in your activity class. Prepare your data and observe the format from the example below. There are three vital parameters: columns (array of column) and listData (array of data), and option to enable or disable Action button to every row. **The number of array columns must match the count of variables in your entities.**
 
 ### XML Layout
 ```bash
