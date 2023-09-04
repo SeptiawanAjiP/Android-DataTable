@@ -9,6 +9,7 @@ Facing trouble displaying data in Android? Tired of the list format (recyclervie
 - Utilize the popular DataTable library in JavaScript, powered by jQuery.
 - Effortlessly display, sort, and filter tabular data.
 - Easily bind data from Android to JavaScript for interactive tables.
+- Sorted by spesific column
 
 ## Installation
 
@@ -102,8 +103,10 @@ class MainActivity: AppCompatActivity() {
         listData.add(User("Sophia", 26, "678 Walnut Drive", "sophia@example.com"))
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
-
-        binding.dtvTable.setTable(columns, listData, true)
+        
+        binding.dtvTable.setTable(columns, listData) // default
+        binding.dtvTable.setTable(columns, listData, isActionButtonShow =  true) // show action button on last column
+        binding.dtvTable.setTable(columns, listData, isActionButtonShow =  true, orderBy =  OrderBy(0, "DESC")) // sorted descending by column 0, use ASC to ascending sorted
 
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
             override fun onRowClicked(dataStr: String) {

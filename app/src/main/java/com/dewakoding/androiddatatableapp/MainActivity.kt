@@ -34,7 +34,11 @@ class MainActivity: AppCompatActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        binding.dtvTable.setTable(columns, listData, true, OrderBy(0, "DESC"))
+        binding.dtvTable.setTable(
+            columns,
+            listData,
+            isActionButtonShow =  true,
+            orderBy =  OrderBy(0, "DESC"))
 
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
             override fun onRowClicked(dataStr: String) {
