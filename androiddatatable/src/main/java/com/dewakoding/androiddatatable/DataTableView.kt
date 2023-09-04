@@ -17,6 +17,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import com.dewakoding.androiddatatable.data.Column
+import com.dewakoding.androiddatatable.data.OrderBy
 import com.dewakoding.androiddatatable.listener.OnWebViewComponentClickListener
 import com.dewakoding.androiddatatable.util.JavascriptInterface
 import com.google.gson.Gson
@@ -36,8 +37,8 @@ open class DataTableView @JvmOverloads constructor(
         webView = WebView(context)
     }
 
-    fun setTable(columns: ArrayList<Column>, listData: List<Any>, isActionButtonShow: Boolean) {
-        jsi = JavascriptInterface(getContext(), Gson().toJson(columns), Gson().toJson(listData), isActionButtonShow, object: com.dewakoding.androiddatatable.listener.OnClickListener {
+    fun setTable(columns: ArrayList<Column>, listData: List<Any>, isActionButtonShow: Boolean, orderBy: OrderBy? = null) {
+        jsi = JavascriptInterface(getContext(), Gson().toJson(columns), Gson().toJson(listData), isActionButtonShow, orderBy, object: com.dewakoding.androiddatatable.listener.OnClickListener {
             override fun onClick(str: String) {
                 onRowButtonClicked(str)
             }

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dewakoding.androiddatatable.data.Column
+import com.dewakoding.androiddatatable.data.OrderBy
 import com.dewakoding.androiddatatable.listener.OnWebViewComponentClickListener
 import com.dewakoding.androiddatatableapp.data.User
 import com.dewakoding.androiddatatableapp.databinding.ActivityMainBinding
@@ -33,7 +34,7 @@ class MainActivity: AppCompatActivity() {
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
 
-        binding.dtvTable.setTable(columns, listData, true)
+        binding.dtvTable.setTable(columns, listData, true, OrderBy(0, "DESC"))
 
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
             override fun onRowClicked(dataStr: String) {

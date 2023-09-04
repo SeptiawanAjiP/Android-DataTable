@@ -51,6 +51,7 @@
     $(document).ready(function() {
         const column = JSON.parse(Android.getColumn());
         const data = JSON.parse(Android.getData());
+        const orderBy = JSON.parse(Android.getOrderBy())
         if (Android.isActionButtonShow()) {
             const actionButton = {
                  "data": null,
@@ -59,7 +60,6 @@
                  "render": function (item) {
                     const dataAttr = JSON.stringify(item).replace(/'/g, "\\'");
                     return `<div class="btn-group"> <button type="button" data-json='${dataAttr}' onclick="action(this)" value="0" class="btn btn-success">Action</button></div>`;
-
                 }
             }
             column.push(actionButton)
@@ -67,6 +67,7 @@
         $("#example").DataTable({
             responsive: true,
             columns: column,
+            order: orderBy,
             data: data
         })
      });
