@@ -52,6 +52,7 @@
         const column = JSON.parse(Android.getColumn());
         const data = JSON.parse(Android.getData());
         const orderBy = JSON.parse(Android.getOrderBy())
+        const pageLength = parseInt(Android.getPageLength())
         if (Android.isActionButtonShow()) {
             const actionButton = {
                  "data": null,
@@ -68,6 +69,7 @@
             responsive: true,
             columns: column,
             order: orderBy,
+            pageLength: pageLength,
             data: data
         })
      });

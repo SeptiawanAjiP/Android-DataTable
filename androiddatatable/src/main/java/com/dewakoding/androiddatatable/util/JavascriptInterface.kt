@@ -23,16 +23,17 @@ class JavascriptInterface(
     data: String,
     isActionButtonShow: Boolean,
     orderBy: OrderBy?,
+    pageLength: Int?,
     onClickListener: OnClickListener
 ) {
     companion object {
         const val TAG_HANDLER = "Android"
     }
-    private var mContext: Context = context
     private var mColumn: String = column
     private var mData: String = data
     private var mIsActionButtonShow: Boolean = isActionButtonShow
     private var mOrderBy: OrderBy? = orderBy
+    private var mPageLength: Int? = pageLength
     private var mOnClickListener: OnClickListener = onClickListener
 
     @JavascriptInterface
@@ -65,5 +66,10 @@ class JavascriptInterface(
         val gson = Gson()
         val orderByJson = gson.toJson(orderByArray)
         return orderByJson
+    }
+
+   @JavascriptInterface
+    fun getPageLength(): String? {
+        return mPageLength.toString()
     }
 }
