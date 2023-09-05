@@ -107,7 +107,7 @@ class MainActivity: AppCompatActivity() {
         binding.dtvTable.setTable(columns, listData) // default
         binding.dtvTable.setTable(columns, listData, isActionButtonShow =  true) // show action button on last column
         binding.dtvTable.setTable(columns, listData, isActionButtonShow =  true, orderBy =  OrderBy(0, "DESC")) // sorted descending by column 0, use ASC to ascending sorted
-
+        binding.dtvTable.setTable(columns, listData, isActionButtonShow =  true, orderBy =  OrderBy(0, "DESC"), pageLength = 50) // set page length of pagination with 50 data
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
             override fun onRowClicked(dataStr: String) {
                  // convert dataStr to your entity
