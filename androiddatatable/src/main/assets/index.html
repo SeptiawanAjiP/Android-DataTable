@@ -53,6 +53,7 @@
         const data = JSON.parse(Android.getData());
         const orderBy = JSON.parse(Android.getOrderBy())
         const pageLength = parseInt(Android.getPageLength())
+        const isSearchingEnable = (Android.isSearchingEnable() === 'true')
         if (Android.isActionButtonShow()) {
             const actionButton = {
                  "data": null,
@@ -70,6 +71,7 @@
             columns: column,
             order: orderBy,
             pageLength: pageLength,
+            searching: isSearchingEnable,
             data: data
         })
      });

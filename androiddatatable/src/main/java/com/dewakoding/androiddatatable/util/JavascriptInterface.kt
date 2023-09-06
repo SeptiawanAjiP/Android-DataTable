@@ -24,6 +24,7 @@ class JavascriptInterface(
     isActionButtonShow: Boolean,
     orderBy: OrderBy?,
     pageLength: Int?,
+    isSearchingEnable: Boolean?,
     onClickListener: OnClickListener
 ) {
     companion object {
@@ -34,6 +35,7 @@ class JavascriptInterface(
     private var mIsActionButtonShow: Boolean = isActionButtonShow
     private var mOrderBy: OrderBy? = orderBy
     private var mPageLength: Int? = pageLength
+    private var mIsSearchingEnable: Boolean? = isSearchingEnable
     private var mOnClickListener: OnClickListener = onClickListener
 
     @JavascriptInterface
@@ -71,5 +73,10 @@ class JavascriptInterface(
    @JavascriptInterface
     fun getPageLength(): String? {
         return mPageLength.toString()
+    }
+
+    @JavascriptInterface
+    fun isSearchingEnable(): String? {
+        return mIsSearchingEnable.toString()
     }
 }
