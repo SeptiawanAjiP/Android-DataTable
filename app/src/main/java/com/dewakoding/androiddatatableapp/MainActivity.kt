@@ -40,7 +40,7 @@ class MainActivity: AppCompatActivity() {
             isActionButtonShow =  true,
             orderBy =  OrderBy(0, "DESC"),
             pageLength = 50,
-            isSearchingEnable = false
+            isSearchingEnable = true
         )
 
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
