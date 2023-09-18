@@ -1,9 +1,13 @@
 package com.dewakoding.androiddatatableapp
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.dewakoding.androiddatatable.data.Column
 import com.dewakoding.androiddatatable.data.OrderBy
 import com.dewakoding.androiddatatable.listener.OnWebViewComponentClickListener
@@ -16,6 +20,7 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         val columns = ArrayList<Column>()
         columns.add(Column("name", "Name"))
         columns.add(Column("age", "Age"))
@@ -52,7 +57,5 @@ class MainActivity: AppCompatActivity() {
                 Toast.makeText(applicationContext, userClicked.name, Toast.LENGTH_SHORT).show()
             }
         })
-
-
     }
 }
