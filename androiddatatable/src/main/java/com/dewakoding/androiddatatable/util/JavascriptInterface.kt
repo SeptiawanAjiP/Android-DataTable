@@ -3,7 +3,6 @@ package com.dewakoding.androiddatatable.util
 import android.content.Context
 import android.util.Log
 import android.webkit.JavascriptInterface
-import android.widget.Toast
 import com.dewakoding.androiddatatable.data.OrderBy
 import com.dewakoding.androiddatatable.listener.OnClickListener
 import com.google.gson.Gson
@@ -66,8 +65,7 @@ class JavascriptInterface(
             orderByArray.add(mOrderBy!!.type)
         }
         val gson = Gson()
-        val orderByJson = gson.toJson(orderByArray)
-        return orderByJson
+        return gson.toJson(orderByArray)
     }
 
    @JavascriptInterface
