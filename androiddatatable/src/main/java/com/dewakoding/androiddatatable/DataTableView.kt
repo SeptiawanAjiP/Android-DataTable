@@ -46,8 +46,8 @@ open class DataTableView @JvmOverloads constructor(
         webView = WebView(context)
     }
 
-    fun setTable(columns: ArrayList<Column>, listData: List<Any>, isActionButtonShow: Boolean = false, orderBy: OrderBy? = null, pageLength: Int? = 10, isSearchingEnable: Boolean? = true) {
-        jsi = JavascriptInterface(getContext(), Gson().toJson(columns), Gson().toJson(listData), isActionButtonShow, orderBy, pageLength, isSearchingEnable, object: com.dewakoding.androiddatatable.listener.OnClickListener {
+    fun setTable(columns: ArrayList<Column>, listData: List<Any>, isActionButtonShow: Boolean = false, orderBy: OrderBy? = null, pageLength: Int? = 10, isSearchingEnable: Boolean? = true, isLengthChange: Boolean? = true) {
+        jsi = JavascriptInterface(getContext(), Gson().toJson(columns), Gson().toJson(listData), isActionButtonShow, orderBy, pageLength, isSearchingEnable, isLengthChange, object: com.dewakoding.androiddatatable.listener.OnClickListener {
             override fun onClick(str: String) {
                 onRowButtonClicked(str)
             }

@@ -38,14 +38,16 @@ class MainActivity: AppCompatActivity() {
         listData.add(User("Sophia", 26, "678 Walnut Drive", "sophia@example.com"))
         listData.add(User("Robert", 37, "901 Willow Street", "robert@example.com"))
         listData.add(User("Ava", 24, "123 Cherry Lane", "ava@example.com"))
+        listData.add(User("Roy", 25, "12 Good Street", "roy@example"))
 
         binding.dtvTable.setTable(
             columns,
             listData,
             isActionButtonShow =  true,
             orderBy =  OrderBy(1, "DESC"),
-            pageLength = 50,
-            isSearchingEnable = true
+            pageLength = 10,
+            isSearchingEnable = false,
+            isLengthChange = true
         )
 
         binding.dtvTable.setOnClickListener(object : OnWebViewComponentClickListener {
